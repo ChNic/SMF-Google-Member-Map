@@ -1,0 +1,45 @@
+/* Google Maps */
+.googleMaps {
+font-size:small;
+font-family:tahoma, sans-serif;
+}
+
+.googleMapsSidebar {
+font-size:small;
+font-family:tahoma, sans-serif;
+margin:0;
+overflow:auto;
+width:150px;
+height:460px;
+}
+
+.googleMapsLegend {
+font-size:x-small;
+font-family:tahoma, sans-serif;
+margin:0;
+overflow:auto;
+}
+
+/* Google Maps Links */
+a.googleMapsLink:link,a.googleMapsLink:visited,a.googleMapsLink:hover {
+font-size:small;
+font-family:tahoma, sans-serif;
+}
+
+/* THEME MODIFICATIONS 
+#map a:link {
+color:navy;
+}
+
+#map a {
+color:#0f0;
+}
+
+#map a:active {
+color:red;
+}
+
+#map a:hover {
+color:#000;
+}
+*/

@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>brianjw:GoogleMapsMod</id>
+	<name>Google Member Map</name>
+	<version>2.0.7</version>
+	
+<file name="$themedir/languages/Modifications.english.php">
+	<operation>
+		<search position="after"><![CDATA[?>]]></search>
+		<add><![CDATA[
+$txt['googleMap'] = 'Member Map';
+$txt['googleMapWhere'] = 'Where is ';
+$txt['googleMapThereare'] = 'There are';
+$txt['googleMapPinsOnMap'] = 'member pins on the map';
+$txt['googleMapsLegend'] = 'Legend';
+$txt['googleMappinned'] = 'Member Pins';
+$txt['googleMapGreenPinGD'] = 'Someones Pin';
+$txt['googleMapGreenPinNG'] = 'No Gender';
+$txt['googleMapBluePin'] = 'Male';
+$txt['googleMapRedPin'] = 'Female';
+$txt['googleMapPurplePin'] = 'Group of pins';
+$txt['googleMapOnMove'] = 'Recently Added/Moved';
+$txt['googleMapAddPinNote'] = '<b>Click here to add or edit your pin location on the map.</b>';
+$txt['googleMapPleaseClick'] = 'Click to place your pin on the map or click on your pin to remove it.';
+$txt['googleMapDisclaimer'] = '<br />Place your pin as close to your location as you feel comfortable.<br />Use the search function on the map to quickly move to a location (city, zip code, etc) then click on the map to set your pin.<br /><br />When you are done click on "Change Profile" to save your location.';
+$txt['cannot_googleMap_view'] = 'Sorry, you are not allowed to view the Member Map.';
+$txt['permissionname_googleMap_view'] = 'View Member Map';
+$txt['permissionhelp_googleMap_view'] = 'Allow the people to view the Member Map.  If not set, the people will not see the map.';
+$txt['cannot_googleMap_place'] = 'Sorry, you are not allowed to place a pin on the Member Map.';
+$txt['permissionname_googleMap_place'] = 'Place Pin on the Member Map';
+$txt['permissionhelp_googleMap_place'] = 'Allow the people place their pin the Member Map.  If not set, the people will not be able to place their pins.';
+$txt['googlemapdesc'] = 'From here you can control the settings for how the Member Map appears on your forum';
+]]></add>
+	</operation>
+</file>
+
+<file name="$themedir/languages/ManageSettings.english.php">
+	<operation>
+			<search position="before"><![CDATA[
+$txt['karmaLabel'] = 'Karma label';
+$txt['karmaApplaudLabel'] = 'Karma applaud label';
+$txt['karmaSmiteLabel'] = 'Karma smite label';
+]]></search>
+			<add><![CDATA[
+$txt['googleMapsEnable'] = 'Enable the Member Map Modification';
+$txt['googleMapsEnableLegend'] = 'Display a Pin Legend';
+$txt['googleSidebar'] = 'Where to show sidebar';
+$txt['nosidebar'] = 'No Sidebar';
+$txt['rightsidebar'] = 'Sidebar Right';
+$txt['map'] = 'Map';
+$txt['satellite'] = 'Satellite';
+$txt['hybrid'] = 'Hybrid';
+$txt['glargemapcontrol3d'] = 'Large 3D pan/zoom control';
+$txt['glargemapcontrol'] = 'Simpler large pan/zoom control';
+$txt['gsmallmapcontrol'] = 'Smaller pan/zoom control';
+$txt['gsmallzoomcontrol3d'] = 'Small 3D zoom control';
+$txt['gsmallzoomcontrol'] = 'Small zoom control';
+$txt['plainpin'] = 'Plain Pin';
+$txt['textpin'] = 'Pin with Text';
+$txt['iconpin'] = 'Pin with Icon';
+$txt['academy'] = 'academy';
+$txt['activities'] = 'activities';
+$txt['airport'] = 'airport';
+$txt['amusement'] = 'amusement';
+$txt['aquarium'] = 'aquarium';
+$txt['art-gallery'] = 'art gallery';
+$txt['atm'] = 'atm';
+$txt['baby'] = 'baby';
+$txt['bank-dollar'] = 'dollar';
+$txt['bank-euro'] = 'euro';
+$txt['bank-intl'] = 'intl';
+$txt['bank-pound'] = 'pound';
+$txt['bank-yen'] = 'yen';
+$txt['bar'] = 'bar';
+$txt['barber'] = 'barber';
+$txt['beach'] = 'beach';
+$txt['beer'] = 'beer';
+$txt['bicycle'] = 'bicycle';
+$txt['books'] = 'books';
+$txt['bowling'] = 'bowling';
+$txt['bus'] = 'bus';
+$txt['cafe'] = 'cafe';
+$txt['camping'] = 'camping';
+$txt['car-dealer'] = 'car dealer';
+$txt['car-rental'] = 'car rental';
+$txt['car-repair'] = 'car repair';
+$txt['casino'] = 'casino';
+$txt['caution'] = 'caution';
+$txt['cemetery-grave'] = 'grave';
+$txt['cemetery-tomb'] = 'tomb';
+$txt['cinema'] = 'cinema';
+$txt['civic-building'] = 'building';
+$txt['computer'] = 'computer';
+$txt['corporate'] = 'corporate';
+$txt['fire'] = 'fire';
+$txt['flag'] = 'flag';
+$txt['floral'] = 'floral';
+$txt['helicopter'] = 'helicopter';
+$txt['home1'] = 'home';
+$txt['info'] = 'info';
+$txt['landslide'] = 'landslide';
+$txt['legal'] = 'legal';
+$txt['location'] = 'location';
+$txt['locomotive'] = 'locomotive';
+$txt['medical'] = 'medical';
+$txt['mobile'] = 'mobile';
+$txt['motorcycle'] = 'motorcycle';
+$txt['music'] = 'music';
+$txt['parking'] = 'parking';
+$txt['pet'] = 'pet';
+$txt['petrol'] = 'petrol';
+$txt['phone'] = 'phone';
+$txt['picnic'] = 'picnic';
+$txt['postal'] = 'postal';
+$txt['repair'] = 'repair';
+$txt['restaurant'] = 'restaurant';
+$txt['sail'] = 'sail';
+$txt['school'] = 'school';
+$txt['scissors'] = 'scissors';
+$txt['ship'] = 'ship';
+$txt['shoppingbag'] = 'shopping bag';
+$txt['shoppingcart'] = 'shopping cart';
+$txt['ski'] = 'ski';
+$txt['snack'] = 'snack';
+$txt['snow'] = 'snow';
+$txt['sport'] = 'sport';
+$txt['star'] = 'star';
+$txt['swim'] = 'swim';
+$txt['taxi'] = 'taxi';
+$txt['train'] = 'train';
+$txt['truck'] = 'truck';
+$txt['wc-female'] = 'female';
+$txt['wc-male'] = 'male';
+$txt['wc'] = 'unisex';
+$txt['wheelchair'] = 'wheelchair';
+$txt['googleBoldMember'] = 'Show recently added / moved pins as <b>bold</b> in the sidebar';
+$txt['googleMapsKey'] = 'The API key from the <a href="http://www.google.com/apis/maps/signup.html">Google Maps API Page</a>';
+$txt['googleMapsPinGender'] = 'Should the pins reflect members gender?<br /><span class="smalltext">Enabling this will supersede other pin settings, excluding size and drop shadow, for those members who\'s gender is known</span>';
+$txt['KMLoutput_enable'] = 'Should compressed KML output be allowed?<br /><span class="smalltext">KML is a file that is download-able on the Google Map page that displays all the member pins inside Google Earth</span>';
+$txt['googleMapsPinNumber'] = 'Maximum number of pins to show on map<br /><span class="smalltext">Enter 0 for no limit</span>';
+$txt['googleMapsType'] = 'The type of map to display by default';
+$txt['googleNavType'] = 'Select the type of navigation control (Pan/Zoom)';
+$txt['googleMapsDefaultLat'] = 'The default Latitude';
+$txt['googleMapsDefaultLong'] = 'The default Longitude';
+$txt['googleMapsDefaultZoom'] = 'The default Zoom Level<br /><span class="smalltext">Defines the default map location by defining the map center and zoom level.<br />Examples: Europe:48,15,4 USA:39,-95,4</span>';
+$txt['googleMapsEnableClusterer'] = 'Enable Pin Clustering<br /><span class="smalltext">Allows for handling of large numbers of markers, without the slow performance you\'d get if you tried displaying them via the maps API directly.  Zooming in on a cluster will expand it in to the individual pins</span>';
+$txt['googleMapsMinMarkerCluster'] = 'Minimum Pins Per Cluster';
+$txt['googleMapsMaxVisMarker'] = 'Maximum Pins to show on the Map before clustering starts';
+$txt['googleMapsMaxNumClusters'] = 'Maximum number of Clusters';
+$txt['googleMapsMaxLinesCluster'] = 'Maximum number of lines to display in the Cluster Info Box';
+$txt['googleMapFO'] = 'Member Map';
+$txt['googleMapsPinBackground'] = 'Background color of the member pin as a six-digit HTML hexadecimal color';
+$txt['googleMapsPinForeground'] = 'Text color of the member pin as a six-digit HTML hexadecimal color';
+$txt['googleMapsPinStyle'] = 'What style of member pin to use';
+$txt['googleMapsPinShadow'] = 'Add a drop shadow to the member pin';
+$txt['googleMapsPinText'] = 'Enter text for use with a member text pin';
+$txt['googleMapsPinIcon'] = 'Select the icon to use for an member pin';
+$txt['googleMapsPinSize'] = 'Enter the size of the member icon pin';
+$txt['googleMapsClusterBackground'] = 'Background color of the cluster pin as a six-digit HTML hexadecimal color';
+$txt['googleMapsClusterForeground'] = 'Text color of the cluster pin as a six-digit HTML hexadecimal color';
+$txt['googleMapsClusterStyle'] = 'What style of clustering pin to use';
+$txt['googleMapsClusterShadow'] = 'Add a drop shadow to the cluster pin';
+$txt['googleMapsClusterText'] = 'Enter text for use with a cluster text pin';
+$txt['googleMapsClusterIcon'] = 'Select the icon to use for an cluster icon pin';
+$txt['googleMapsClusterSize'] = 'Enter the size of the cluster pin';
+]]></add>
+	</operation>
+</file>
+
+<file name="$themedir/languages/Who.english.php">
+	<operation>
+		<search position="before"><![CDATA[$txt['whoall_who'] = 'Viewing <a href="' . $scripturl . '?action=who">Who\'s Online</a>.';]]></search>
+		<add><![CDATA[
+$txt['whoall_googlemap'] = 'Viewing the <a href="' . $scripturl . '?action=googlemap">Member Map</a>.';
+$txt['whoall_.kml'] = 'Viewing the Google Earth Feed.';
+]]></add>
+	</operation>
+</file>
+
+</modification>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>brianjw:GoogleMapsMod</id>
+	<name>Google Member Map</name>
+	<version>2.0.8</version>
+	<type>modification</type>
+	
+	<install for="2.0 - 2.0.99">
+		<readme type="file" parsebbc="true">install-readme.txt</readme>
+		<require-file name="GoogleMap20Integration.php" destination="$sourcedir">Our integration Functions</require-file>
+		<require-file name="GoogleMap20.php" destination="$sourcedir">The primary modification functions </require-file>
+		<require-file name="Clusterer2.js" destination="$themedir/scripts">Jasvascript to enable the cluster functions</require-file>
+		<require-file name="GoogleMap20.css" destination="$themedir/css">Style Sheets</require-file>
+		<require-file name="GoogleMap20.template.php" destination="$themedir">The map template for viewing the member map</require-file>
+		<require-file name="google_earth_feed.gif" destination="$imagesdir" />
+		<require-file name="googlemap.gif" destination="$imagesdir/english" />
+		<database type="file">add_settings20.php</database>
+		<modification type="file">modification20.xml</modification>
+		<modification>language20.xml</modification>
+		<modification>language20-utf8.xml</modification>
+		<code type="file">add_remove_hooks.php</code>
+		<redirect url="index.php?action=admin;area=modsettings;sa=googlemap" timeout="10000">redirect.txt</redirect>
+	</install>
+	
+	<uninstall for="2.0 - 2.0.99">
+		<readme type="file" parsebbc="true">uninstall-readme.txt</readme>
+		<code type="file">add_remove_hooks.php</code>
+		<remove-file name="$sourcedir/GoogleMap20Integration.php" />
+		<remove-file name="$sourcedir/GoogleMap20.php" />
+		<remove-file name="$themedir/scripts/Clusterer2.js" />
+		<remove-file name="$themedir/css/GoogleMap20.css" />
+		<remove-file name="$themedir/GoogleMap20.template.php" />
+		<remove-file name="$imagesdir/google_earth_feed.gif" />
+		<remove-file name="$imagesdir/english/googlemap.gif" />
+		<modification type="file" reverse="true">modification20.xml</modification>
+		<modification reverse="true">language20.xml</modification>
+		<modification reverse="true">language20-utf8.xml</modification>
+	</uninstall>
+
+</package-info>
