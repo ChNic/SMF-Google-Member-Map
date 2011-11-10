@@ -1,16 +1,22 @@
 <?php
-// These functions are our integration hooks
 
+/**
+ * imb_googlemap()
+ * 
+ * Menu Button hook, integrate_menu_buttons, called from subs.php
+ * used to add top menu buttons
+ *
+ * @param mixed $buttons
+ * @return
+ */
 function imb_googlemap(&$buttons)
-{		
-	// Menu Button hook, integrate_menu_buttons, called from subs.php
-	// used to add top menu buttons 
+{
 	global $txt, $scripturl, $modSettings;
 
 		// where do we want to place this new button
 		$insert_after = 'calendar';
 		$counter = 0;
-		
+
 		// find the location in the buttons array
 		foreach ($buttons as $area => $dummy)
 			if (++$counter && $area == $insert_after)
@@ -30,18 +36,36 @@ function imb_googlemap(&$buttons)
 		$buttons = array_merge(array_slice($buttons, 0, $counter), array_merge($new_menu, array_slice($buttons, $counter)));
 }
 
+/**
+ * ilp_googlemap()
+ *
+ * Permissions hook, integrate_load_permissions, called from ManagePermissions.php
+ * used to add new permisssions
+ *
+ * @param mixed $permissionGroups
+ * @param mixed $permissionList
+ * @param mixed $leftPermissionGroups
+ * @param mixed $hiddenPermissions
+ * @param mixed $relabelPermissions
+ * @return
+ */
 function ilp_googlemap(&$permissionGroups, &$permissionList, &$leftPermissionGroups, &$hiddenPermissions, &$relabelPermissions)
-{	
-	// Permissions hook, integrate_load_permissions, called from ManagePermissions.php
-	// used to add new permisssions
+{
 	$permissionList['membergroup']['googleMap_view'] = array(false, 'general', 'view_basic_info');
 	$permissionList['membergroup']['googleMap_place'] = array(false, 'general', 'view_basic_info');
 }
 
+/**
+ * ia_googlemap()
+ *
+ * Actions hook, integrate_actions, called from index.php
+ * used to add new actions to the system
+ *
+ * @param mixed $actionArray
+ * @return
+ */
 function ia_googlemap(&$actionArray)
 {
-	// Actions hook, integrate_actions, called from index.php
-	// used to add new actions to the system
 	$actionArray = array_merge($actionArray,array(
 		'googlemap' => array('GoogleMap20.php', 'Map'),
 		'membermap' => array('GoogleMap20.php', 'Map'),
@@ -49,25 +73,45 @@ function ia_googlemap(&$actionArray)
 	);
 }
 
+/**
+ * iaa_googlemap()
+ *
+ * Admin Hook, integrate_admin_areas, called from Admin.php
+ * used to add/modify admin menu areas
+ *
+ * @param mixed $admin_areas
+ * @return
+ */
 function iaa_googlemap(&$admin_areas)
 {
-	// Admin Hook, integrate_admin_areas, called from Admin.php
-	// used to add/modify admin menu areas
 	global $txt;
+	
 	$admin_areas['config']['areas']['modsettings']['subsections']['googlemap'] = array($txt['googleMap']);
 }
 
+/**
+ * imm_googlemap()
+ *
+ * Modifications hook, integrate_modify_modifications, called from ManageSettings.php
+ * used to add new menu screens areas.
+ *
+ * @param mixed $sub_actions
+ * @return
+ */
 function imm_googlemap(&$sub_actions)
 {
-	// Modifications hook, integrate_modify_modifications, called from ManageSettings.php
-	// used to add new menu screens areas.
 	$sub_actions['googlemap'] = 'ModifyGoogleMapSettings';
 }
 
+/**
+ * ModifyGoogleMapSettings()
+ *
+ * @return
+ */
 function ModifyGoogleMapSettings()
 {
 	global $txt, $scripturl, $context, $settings, $sc;
-	
+
 	$context[$context['admin_menu_name']]['tab_data']['tabs']['googlemap']['description'] = $txt['googlemapdesc'];
 	$config_vars = array(
 			// Map - On or off?
@@ -96,7 +140,7 @@ function ModifyGoogleMapSettings()
 			array('check', 'googleMapsPinShadow'),
 			array('int', 'googleMapsPinSize', '2'),
 			array('text', 'googleMapsPinText'),
-			array('select', 'googleMapsPinIcon', 
+			array('select', 'googleMapsPinIcon',
 				array(
 					'academy' => $txt['academy'],
 					'activities' => $txt['activities'],
@@ -136,7 +180,7 @@ function ModifyGoogleMapSettings()
 					'flag' => $txt['flag'],
 					'floral' => $txt['floral'],
 					'helicopter' => $txt['helicopter'],
-					'home' => $txt['home'],
+					'home' => $txt['home1'],
 					'info' => $txt['info'],
 					'landslide' => $txt['landslide'],
 					'legal' => $txt['legal'],
@@ -190,7 +234,7 @@ function ModifyGoogleMapSettings()
 			array('check', 'googleMapsClusterShadow'),
 			array('int', 'googleMapsClusterSize', '2'),
 			array('text', 'googleMapsClusterText'),
-			array('select', 'googleMapsClusterIcon', 
+			array('select', 'googleMapsClusterIcon',
 				array(
 					'academy' => $txt['academy'],
 					'activities' => $txt['activities'],

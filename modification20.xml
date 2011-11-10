@@ -3,7 +3,6 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>brianjw:GoogleMapsMod</id>
 	<name>Google Member Map</name>
-	<version>2.0.8</version>
 
 	<file name="$sourcedir/Load.php">
 		<operation>
