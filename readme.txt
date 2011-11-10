@@ -24,12 +24,15 @@ Please use the Google Member Map modification thread for support with this modif
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
 2.09
 + New pins are now sorted to the top of the list
-+ resutucted the info bubble to use the theme classes
++ restructured the info bubble
 ! added a default height to the info bubble to prevent avatars from breaking out
 ! fixed the home text string
 ! general code cleanup
 
-2.08
+2.08 
+2.08b - ! fixed logout issue caused but the php4 fix (array key issue)
+2.08a - ! removed a php5 dependency
++ restructured mod to use integration hooks for 2.0 gold.
 ! fixed undefined index error in the googlemap20 template
 + updated the template html code to remove several unneeded tables
 ! removed several xhtml validation errors
