@@ -13,8 +13,8 @@
 		),]]></search>
 			<add><![CDATA[
 		'googleMap' => array(
-			'latitude' => !isset($profile['latitude']) ? '' : $profile['latitude'],
-			'longitude' => !isset($profile['longitude']) ? '' : $profile['longitude'],
+			'latitude' => !isset($profile['latitude']) ? '' : (float) $profile['latitude'],
+			'longitude' => !isset($profile['longitude']) ? '' : (float) $profile['longitude'],
 			'pindate' => !isset($profile['pindate']) ? '' : $profile['pindate'],
 		),]]></add>
 		</operation>

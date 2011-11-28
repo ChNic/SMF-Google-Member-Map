@@ -1,7 +1,7 @@
 <?php
 // -----------------------------------------------------------------------------------------------
 // "Google Member Map" Mod for Simple Machines Forum (SMF) V2.0
-// version 2.0.9
+// version 2.0.10
 // -----------------------------------------------------------------------------------------------
 
 // Are we calling this directly, umm lets just say no
@@ -92,7 +92,7 @@ function MapsJS()
 
 	// This function picks up the click and opens the corresponding info window
 	function myclick(i) {
-		gmarkers[i].openInfoWindowHtml(htmls[i]);
+		gmarkers[i].openInfoWindowHtml(htmls[i], {maxWidth:240});
 	}
 
 	function MakeMap() {
@@ -174,7 +174,7 @@ function MapsJS()
 			GEvent.addListener(marker, "click", function() {
 			map.getCenter(point);
 			map.panTo(point);
-			marker.openInfoWindowHtml(html);
+			marker.openInfoWindowHtml(html, {maxWidth:240});
 			});
 
 			// save the info we need to use later for the sidebar
@@ -317,7 +317,7 @@ function MapsXML()
 	if ($totalSet[0] >= $modSettings['googleMapsPinNumber'] && $modSettings['googleMapsPinNumber'] != 0)
 	{
 		// Lets set this to nothing, just to be safe if we dont have variables...
-		$sql_addon = "";
+		$sql_addon = '';
 
 		// Check to see if we have any ranges before we add to the SQL statment...
 		// This could stand to have a bit better security on it but its gonna be let by the side for now
@@ -355,7 +355,7 @@ function MapsXML()
 		$query,
 		array(
 			'last_week' => $last_week,
-			'max_pins' => isset($maxPins) ? $maxPins : 0,
+			'maxPins' => isset($maxPins) ? $maxPins : 0,
 		)
 	);
 

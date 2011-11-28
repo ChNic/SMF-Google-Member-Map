@@ -1,10 +1,11 @@
 [hr]
 [center][size=16pt][b]Google Member Map[/b][/size]
 [url=http://custom.simplemachines.org/mods/index.php?action=search;author=11359][b]By Spuds[/b][/url]
+[url=http://custom.simplemachines.org/mods/index.php?mod=1010][b]Link to Mod[/b][/url]
 [/center]
 [hr]
 
-COMPATIBLE WITH SMF SMF 2.0
+COMPATIBLE WITH SMF 2.0x and 1.1x
 
 [color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
 This mod installs a member map to your website which allows your members to pin their location on a map. It uses Google Maps 2.0 API to generate the map and place 'Push" pins. Before installing it is recommended to make a backup of your member and settings tables for your forum. Once installed you will need to go to Configuration -> Modification Settings -> Member Map to enable it and enter your google map API key. The key is required by the Google Maps, and can be acquired at for free at http://www.google.com/apis/maps/signup.html
@@ -22,6 +23,10 @@ In your admin panel you will need to enable it and enter your google map API key
 Please use the Google Member Map modification thread for support with this modification.
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
+2.10
+! Fixed error where info bubble was expanding to full page width in Internet Explorer
+! Fixed issue where no pins would show up if you exceeded the max allowed setting in the admin panel
+
 2.09
 + New pins are now sorted to the top of the list
 + restructured the info bubble

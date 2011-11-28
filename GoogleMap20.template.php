@@ -60,10 +60,10 @@ function template_map()
 		// Load the scripts so google starts to render this page
 		$modSettings['googleMapsKey'] = !empty($modSettings['googleMapsKey']) ? $modSettings['googleMapsKey'] : '';
 		echo '
-							<script type="text/javascript" language="JavaScript" src="http://maps.google.com/maps?file=api&v=2&key=', $modSettings['googleMapsKey'], '"></script>
-							<script type="text/javascript" language="JavaScript" src="', $settings['default_theme_url'], '/scripts/Clusterer2.js"></script>
-							<script type="text/javascript" language="JavaScript" src="', $scripturl, '?action=googlemap;sa=.js"></script>
-							<script type="text/javascript" language="JavaScript"><!-- window.onunload=GUnload(); // --></script>';
+							<script type="text/javascript" src="http://maps.google.com/maps?file=api&v=2&key=', $modSettings['googleMapsKey'], '"></script>
+							<script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/Clusterer2.js"></script>
+							<script type="text/javascript" src="', $scripturl, '?action=googlemap;sa=.js"></script>
+							<script type="text/javascript" ><!-- window.onunload=GUnload(); // --></script>';
 
 		// Show a legend below the map as well?
 		if (!empty($modSettings['googleMapsEnableLegend']))

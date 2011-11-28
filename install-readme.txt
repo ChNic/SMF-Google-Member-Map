@@ -1,4 +1,4 @@
-[center][color=red][size=16pt][b]Google Member Map 2.0.9[/b][/size][/color]
+[center][color=red][size=16pt][b]Google Member Map 2.0.10[/b][/size][/color]
 [/center]
 
 [b]Credits:[/b]
