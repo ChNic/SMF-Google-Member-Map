@@ -20,7 +20,7 @@ if (SMF == 'SSI')
 	
 // Define the hooks
 $hook_functions = array(
-	'integrate_pre_include' => '$boarddir/Sources/GoogleMap20Integration.php',
+	'integrate_pre_include' => '$boarddir/Sources/GoogleMapIntegration.php',
 	'integrate_admin_areas' => 'iaa_googlemap',
     'integrate_modify_modifications' => 'imm_googlemap',
 	'integrate_actions' => 'ia_googlemap',

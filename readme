@@ -1,12 +1,8 @@
 Google Member Map
 Introduction
 
-This mod installs a member map to your website which allows your members to pin their location on a map. It uses Google Maps 2.0 API to generate the map and place 'Push" pins. Before installing it is recommended to make a backup of your member and settings tables for your forum. Once installed you will need to go to Configuration -> Modification Settings -> Member Map to enable it and enter your google map API key. The key is required by the Google Maps, and can be acquired at for free at http://www.google.com/apis/maps/signup.html
-
-Upon sign up you will need to enter your sites URL, for example, if your Forum is at http://www.example.com/forums/ In the google map sign up box enter exactly that, do not include any additional file name, just the directory path in the url.
-Installation
+This mod installs a member map to your website which allows your members to pin their location on a map. It uses Google Maps 3.0 API to generate the map and place 'Push" pins. 
 
 Simply install this package through the package manager located in your Administration Panel. Manual edits may be required if your site uses a custom theme. This mod is compatible with SMF 2.0
-How Do I Use This Mod
 
-In your admin panel you will need to enable it and enter your google map API key to allow it to function correctly. Next, your members will need to edit their profiles and place a pin on the map to show their location and save their profile. That pin will then display on the main member map page. The admin will also need to set the map permissions so users can see and use it.
+In your admin panel you will need to enable it and set any customization you like. Next, your members will need to edit their profiles and place a pin on the map to show their location and save their profile. That pin will then display on the main member map page. The admin will also need to set the map permissions so users can see and use it.

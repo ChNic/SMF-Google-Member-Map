@@ -20,41 +20,41 @@ global $smcFunc, $db_prefix;
 
 // List settings here in the format: setting_key => default_value.  Escape any "s. (" => \")
 $mod_settings = array(
-	'googleMapsEnable' => 0,
-	'googleMapsEnableLegend' => 1,
-	'googleMapsKey' => '',
-	'googleMapsPinGender' => 0,
-	'KMLoutput_enable' => 0,
-	'googleMapsPinNumber' => 250,
-	'googleMapsType' => 'G_HYBRID_MAP',
-	'googleNavType' => 'GLargeMapControl3D',
-	'googleSidebar' => 'right',
-	'googleMapsPinBackground' => '66FF66',
-	'googleMapsPinForeground' => '202020',
-	'googleMapsPinStyle' => 'plainpin',
-	'googleMapsPinShadow' => 1,
-	'googleMapsPinText' => '',
-	'googleMapsPinIcon' => '',
-	'googleMapsPinSize' => 25,
-	'googleMapsDefaultLat' => 0.00000000000,
-	'googleMapsDefaultLong' => 0.00000000000,
-	'googleMapsDefaultZoom' => 1,
-	'googleMapsEnableClusterer' => 1,
-	'googleMapsMinMarkerCluster' => 5,
-	'googleMapsMaxVisMarker' => 90,
-	'googleMapsMaxNumClusters' => 10,
-	'googleMapsMaxLinesCluster' => 10,
-	'googleMapsClusterBackground' => 'FF66FF',
-	'googleMapsClusterForeground' => '202020',
-	'googleMapsClusterSize' => 25,
-	'googleMapsClusterStyle' => 'iconpin',
-	'googleMapsClusterShadow' => 1,
-	'googleMapsClusterText' => '',
-	'googleMapsClusterIcon' => 'info',
-	'googleBoldMember' => 1,
+	'googleMap_Enable' => 0,
+	'googleMap_EnableLegend' => 1,
+	'googleMap_Key' => '',
+	'googleMap_PinGender' => 0,
+	'googleMap_KMLoutput_enable' => 0,
+	'googleMap_PinNumber' => 250,
+	'googleMap_Type' => 'G_HYBRID_MAP',
+	'googleMap_NavType' => 'GLargeMapControl3D',
+	'googleMap_Sidebar' => 'right',
+	'googleMap_PinBackground' => '66FF66',
+	'googleMap_PinForeground' => '202020',
+	'googleMap_PinStyle' => 'plainpin',
+	'googleMap_PinShadow' => 1,
+	'googleMap_PinText' => '',
+	'googleMap_PinIcon' => '',
+	'googleMap_PinSize' => 25,
+	'googleMap_DefaultLat' => 0.0,
+	'googleMap_DefaultLong' => 0.0,
+	'googleMap_DefaultZoom' => 1,
+	'googleMap_EnableClusterer' => 1,
+	'googleMap_MinMarkerPerCluster' => 5,
+	'googleMap_MinMarkertoCluster' => 90,
+	'googleMap_GridSize' => 30,
+	'googleMap_MaxNumClusters' => 10,
+	'googleMap_MaxLinesCluster' => 10,
+	'googleMap_ClusterBackground' => 'FF66FF',
+	'googleMap_ClusterForeground' => '202020',
+	'googleMap_ClusterSize' => 25,
+	'googleMap_ClusterStyle' => 'iconpin',
+	'googleMap_ClusterShadow' => 1,
+	'googleMap_ClusterText' => '',
+	'googleMap_ClusterIcon' => 'info',
+	'googleMap_BoldMember' => 1,
+	'googleMap_ButtonLocation' => 'calendar',
 );
-
-/******************************************************************************/
 
 // Update mod settings if applicable
 foreach ($mod_settings as $new_setting => $new_value)
@@ -136,7 +136,7 @@ $request = $smcFunc['db_query']('', '
 while ($row = $smcFunc['db_fetch_assoc']($request))
 	$groups[] = $row['id_group'];
 
-// Give them all their new permission.
+// Give them all their new map permissions to make it easy for the admin.
 $request = $smcFunc['db_query']('', '
 	INSERT IGNORE INTO {db_prefix}permissions
 		(permission, id_group, add_deny)

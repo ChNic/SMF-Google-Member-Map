@@ -1,26 +1,44 @@
-[center][color=red][size=16pt][b]Google Member Map 2.0.10[/b][/size][/color]
+[hr]
+[center][size=16pt][b]Google Member Map V2.5[/b][/size]
+[url=http://custom.simplemachines.org/mods/index.php?action=search;author=11359][b]By Spuds[/b][/url]
+[url=http://custom.simplemachines.org/mods/index.php?mod=1010][b]Link to Mod[/b][/url]
 [/center]
-
-[b]Credits:[/b]
-brianjw - [i]Bug Fixer / New Creator for mod[/i]
-StormLrd - [i]Google Map Layout Developer[/i] (created the Pinned Member's part of the mod.)
-2Ntense - [i]Feature Adder / Added many new features in 0.2[/i]
-Nao - [i]Upgrader / Completely coded the mod to work with SMF 2.0[/i]
-BlueDevil - [i]Converted to RC2, RC3[/i]
-Spuds - [i]Assumed Mod ownership for RC4 onward[/i]
-
 [hr]
 
+[color=blue][b][size=12pt][u]License[/u][/size][/b][/color]
+This modification is released under a BSD license, a copy of it with its provisions is included with the package.
+
+[color=blue][b][size=12pt][u]Dependencies[/u][/size][/b][/color]
+The Google JavaScript Maps API V3 to create the map and place pins.  This API is available for any web site that is free to consumers. By enabling and using this SMF modification you will be acknowledging and agreeing to the Google<a href="http://code.google.com/apis/maps/terms.html"> terms of use</a>';
+
+[url=http://jscolor.com/]JSColor[/url] project to select the pin color in the admin interface.  JSColor is by Jan Odvárko and is released under the GNU Lesser General Public License. LGPL differs from GPL by allowing you to use JSColor even in non-(L)GPL applications.
+
 [color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
+This mod installs a member map to your website which allows your members to pin their location on a map. It uses Google Maps 3.0 API to generate the map and place 'Push" pins. 
 
-This mod installs a member map to your website where your users can place a map push pin to show their location. It uses Google Maps API to make the map and put pins on the map.
+Google Earth can also make use of the pin data. This mod allows for the exporting of user pin data in to a .kml file for those that want to use Google Earth to see their member locations.  Simply add a network link in Google Earth to point at http://www.example.com/forums/index.php?action=.kml to get the data for Google Earth.  The capability to export .kml files is controlled by the permission to view the map, and keep in mind Google Earth will appear as a guest to your forum.
 
-Before installing it is recommended to make a backup of member and settings tables for your forum since it modifies those talbes. 
+[color=blue][b][size=12pt][u]Features[/u][/size][/b][/color]
+o Adds a member map button to the main menu
+o Adds a member profile area for users to add their pin to thier profile.  This will then appear on the map.  
+o Ablilty to search by location when placing thier pin
+o Adds Profile info bubbles to the map pins
+o Ability to cluster pins together to improve map legabilty.  Clusters will un-cluster as you zoom in on them
 
-Once installed you will need to go to Features and Options to enable it, along with entering a Google map API key. The key is required by the Google Maps API, and can be acquired for free at, http://www.google.com/apis/maps/signup.html
+[color=blue][b][size=12pt][u]How to Use[/u][/size][/b][/color]
+In your admin panel you will need to enable it, which implies your acceptance of Google Maps terms of service.  Choose the settings that best work for your site.  There are many settings so you can fine tune the experience for your users and site.  Next, your members will need to edit their profiles and place a pin on the map to show their location and save their profile. That pin will then display on the main member map page. The admin will also need to set the map permissions so users can view the map as well as place a pin on the map. 
 
-Upon sign up at Google you will need to put in your sites URL, for example, if your Forum is located at 
-	http://www.example.com/forums/
-Then in the Google API sign up box enter exactly that, do not include any file name just the directory path in the url.
+[color=blue][b][size=12pt][u]Support[/u][/b][/color]
+Please use the member map thread for support with this modification.
 
-Google Earth can also make use of the pin data. This mod allows for the export of user pin data in to a .kml file for those that want to use Google Earth to see their member location.  Simply add a network link in Google Earth to point at http://www.example.com/forums/index.php?action=.kml to get the data for Google Earth.  The capability to export .kml files is controlled by the permission to view the map, and keep in mind Google Earth will appear as a guest to your forum!
+[color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
+[b]2.5 - 07 Dec 2011[/b]
+o + re-Released under proper BSD license
+o + all javascript redone to use GoogleMaps V3 api, API key is no longer needed
+o + new pin clustering code, can show cluster images as well as pins, has dynamic cluster pin sizing
+o + local search now uses places library, pan/zooms to location but does not show pin (limits user confusion)
+o + Updated map display code
+o + updated kml output for Google Earth use
+o + updated info bubble
+o + added color picker to the admin panel to make choosing pin colors easier
+o + ability to set where you want the button to appear in the top menu

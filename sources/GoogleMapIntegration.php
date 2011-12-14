@@ -1,6 +1,17 @@
 <?php
 
 /**
+ *
+ * @package "Google Member Map" Mod for Simple Machines Forum (SMF) V2.0
+ * @author Spuds
+ * @copyright (c) 2011 Spuds
+ * @license license.txt (included with package) BSD
+ *
+ * @version 2.5
+ *
+ */
+
+/**
  * imb_googlemap()
  * 
  * Menu Button hook, integrate_menu_buttons, called from subs.php
@@ -12,22 +23,26 @@
 function imb_googlemap(&$buttons)
 {
 	global $txt, $scripturl, $modSettings;
+	
+		loadlanguage('GoogleMap');
 
 		// where do we want to place this new button
-		$insert_after = 'calendar';
+		$insert_after = empty($modSettings['googleMap_ButtonLocation']) ? 'calendar' : $modSettings['googleMap_ButtonLocation'];
 		$counter = 0;
 
 		// find the location in the buttons array
 		foreach ($buttons as $area => $dummy)
+		{
 			if (++$counter && $area == $insert_after)
 				break;
+		}
 
 		// Define the new menu item(s)
 		$new_menu = array(
 			'googlemap' => array(
 				'title' => $txt['googleMap'],
 				'href' => $scripturl . '?action=googlemap',
-				'show' => !empty($modSettings['googleMapsEnable']) && allowedTo('googleMap_view'),
+				'show' => !empty($modSettings['googleMap_Enable']) && allowedTo('googleMap_view'),
 				'sub_buttons' => array(),
 			)
 		);
@@ -67,9 +82,8 @@ function ilp_googlemap(&$permissionGroups, &$permissionList, &$leftPermissionGro
 function ia_googlemap(&$actionArray)
 {
 	$actionArray = array_merge($actionArray,array(
-		'googlemap' => array('GoogleMap20.php', 'Map'),
-		'membermap' => array('GoogleMap20.php', 'Map'),
-		'.kml' => array('GoogleMap20.php', 'ShowKML'))
+		'googlemap' => array('GoogleMap.php', 'gmm_main'),
+		'.kml' => array('GoogleMap.php', 'gmm_show_KML'))
 	);
 }
 
@@ -86,6 +100,7 @@ function iaa_googlemap(&$admin_areas)
 {
 	global $txt;
 	
+	loadlanguage('GoogleMap');
 	$admin_areas['config']['areas']['modsettings']['subsections']['googlemap'] = array($txt['googleMap']);
 }
 
@@ -111,130 +126,60 @@ function imm_googlemap(&$sub_actions)
 function ModifyGoogleMapSettings()
 {
 	global $txt, $scripturl, $context, $settings, $sc;
-
-	$context[$context['admin_menu_name']]['tab_data']['tabs']['googlemap']['description'] = $txt['googlemapdesc'];
+	
+	loadlanguage('GoogleMap');
+	$context[$context['admin_menu_name']]['tab_data']['tabs']['googlemap']['description'] = $txt['googleMap_desc'];
 	$config_vars = array(
 			// Map - On or off?
-			array('check', 'googleMapsEnable'),
-			array('check', 'googleMapsEnableLegend'),
-			array('select', 'googleSidebar', array('none' => $txt['nosidebar'], 'right' => $txt['rightsidebar'])),
-		'',
-			// Key, pins static/gender/membergroup
-			array('text', 'googleMapsKey'),
-			array('check', 'KMLoutput_enable'),
-			array('int', 'googleMapsPinNumber'),
-			array('select', 'googleMapsType', array('G_NORMAL_MAP' => $txt['map'], 'G_SATELLITE_MAP' => $txt['satellite'], 'G_HYBRID_MAP' => $txt['hybrid'])),
-			array('select', 'googleNavType', array('GLargeMapControl3D' => $txt['glargemapcontrol3d'], 'GLargeMapControl' => $txt['glargemapcontrol'], 'GSmallMapControl' => $txt['gsmallmapcontrol'], 'GSmallZoomControl3D' => $txt['gsmallzoomcontrol3d'], 'GSmallZoomControl' => $txt['gsmallzoomcontrol'])),
-			array('check', 'googleBoldMember'),
-		'',
-			// Default Location/Zoom
-			array('float', 'googleMapsDefaultLat', '25'),
-			array('float', 'googleMapsDefaultLong', '25'),
-			array('int', 'googleMapsDefaultZoom'),
-		'',
-			// Member Pin Style
-			array('check', 'googleMapsPinGender'),
-			array('text', 'googleMapsPinBackground', '6'),
-			array('text', 'googleMapsPinForeground', '6'),
-			array('select', 'googleMapsPinStyle', array('plainpin' => $txt['plainpin'], 'textpin' => $txt['textpin'], 'iconpin' => $txt['iconpin'])),
-			array('check', 'googleMapsPinShadow'),
-			array('int', 'googleMapsPinSize', '2'),
-			array('text', 'googleMapsPinText'),
-			array('select', 'googleMapsPinIcon',
-				array(
-					'academy' => $txt['academy'],
-					'activities' => $txt['activities'],
-					'airport' => $txt['airport'],
-					'amusement' => $txt['amusement'],
-					'aquarium' => $txt['aquarium'],
-					'art-gallery' => $txt['art-gallery'],
-					'atm' => $txt['atm'],
-					'baby' => $txt['baby'],
-					'bank-dollar' => $txt['bank-dollar'],
-					'bank-euro' => $txt['bank-euro'],
-					'bank-intl' => $txt['bank-intl'],
-					'bank-pound' => $txt['bank-pound'],
-					'bank-yen' => $txt['bank-yen'],
-					'bar' => $txt['bar'],
-					'barber' => $txt['barber'],
-					'beach' => $txt['beach'],
-					'beer' => $txt['beer'],
-					'bicycle' => $txt['bicycle'],
-					'books' => $txt['books'],
-					'bowling' => $txt['bowling'],
-					'bus' => $txt['bus'],
-					'cafe' => $txt['cafe'],
-					'camping' => $txt['camping'],
-					'car-dealer' => $txt['car-dealer'],
-					'car-rental' => $txt['car-rental'],
-					'car-repair' => $txt['car-repair'],
-					'casino' => $txt['casino'],
-					'caution' => $txt['caution'],
-					'cemetery-grave' => $txt['cemetery-grave'],
-					'cemetery-tomb' => $txt['cemetery-tomb'],
-					'cinema' => $txt['cinema'],
-					'civic-building' => $txt['civic-building'],
-					'computer' => $txt['computer'],
-					'corporate' => $txt['corporate'],
-					'fire' => $txt['fire'],
-					'flag' => $txt['flag'],
-					'floral' => $txt['floral'],
-					'helicopter' => $txt['helicopter'],
-					'home' => $txt['home1'],
-					'info' => $txt['info'],
-					'landslide' => $txt['landslide'],
-					'legal' => $txt['legal'],
-					'location' => $txt['location'],
-					'locomotive' => $txt['locomotive'],
-					'medical' => $txt['medical'],
-					'mobile' => $txt['mobile'],
-					'motorcycle' => $txt['motorcycle'],
-					'music' => $txt['music'],
-					'parking' => $txt['parking'],
-					'pet' => $txt['pet'],
-					'petrol' => $txt['petrol'],
-					'phone' => $txt['phone'],
-					'picnic' => $txt['picnic'],
-					'postal' => $txt['postal'],
-					'repair' => $txt['repair'],
-					'restaurant' => $txt['restaurant'],
-					'sail' => $txt['sail'],
-					'school' => $txt['school'],
-					'scissors' => $txt['scissors'],
-					'ship' => $txt['ship'],
-					'shoppingbag' => $txt['shoppingbag'],
-					'shoppingcart' => $txt['shoppingcart'],
-					'ski' => $txt['ski'],
-					'snack' => $txt['snack'],
-					'snow' => $txt['snow'],
-					'sport' => $txt['sport'],
-					'star' => $txt['star'],
-					'swim' => $txt['swim'],
-					'taxi' => $txt['taxi'],
-					'train' => $txt['train'],
-					'truck' => $txt['truck'],
-					'wc-female' => $txt['wc-female'],
-					'wc-male' => $txt['wc-male'],
-					'wc' => $txt['wc'],
-					'wheelchair' => $txt['wheelchair'],
-				)
+			array('check', 'googleMap_Enable', 'postinput' => $txt['googleMap_license']),
+			// Default Location/Zoom/Map Controls/etc
+			array('title', 'googleMap_MapSettings'),
+			array('select', 'googleMap_ButtonLocation', array(
+				'home' => $txt['home'],
+				'help' => $txt['help'],
+				'search' => $txt['search'],
+				'login' => $txt['login'],
+				'register' => $txt['register'],
+				'calendar' => $txt['calendar'],
+				'profile' => $txt['profile'],
+				'pm' => $txt['pm_short'])
 			),
-		'',
-			// Clustering Options
-			array('check', 'googleMapsEnableClusterer'),
-			array('int', 'googleMapsMinMarkerCluster'),
-			array('int', 'googleMapsMaxVisMarker'),
-			array('int', 'googleMapsMaxNumClusters'),
-			array('int', 'googleMapsMaxLinesCluster'),
-		'',
-			// Clustering Style
-			array('text', 'googleMapsClusterBackground', '6'),
-			array('text', 'googleMapsClusterForeground', '6'),
-			array('select', 'googleMapsClusterStyle', array('plainpin' => $txt['plainpin'], 'textpin' => $txt['textpin'], 'iconpin' => $txt['iconpin'])),
-			array('check', 'googleMapsClusterShadow'),
-			array('int', 'googleMapsClusterSize', '2'),
-			array('text', 'googleMapsClusterText'),
-			array('select', 'googleMapsClusterIcon',
+			array('float', 'googleMap_DefaultLat', 10, 'postinput' => $txt['googleMap_DefaultLat_info']),
+			array('float', 'googleMap_DefaultLong', 10,  'postinput' => $txt['googleMap_DefaultLong_info']),
+			array('int', 'googleMap_DefaultZoom', 'subtext' => $txt['googleMap_DefaultZoom_Info']),
+			array('select', 'googleMap_Type', array(
+				'ROADMAP' => $txt['googleMap_roadmap'],
+				'SATELLITE' => $txt['googleMap_satellite'],
+				'HYBRID' => $txt['googleMap_hybrid'])
+			),
+			array('select', 'googleMap_NavType', array(
+				'LARGE' => $txt['googleMap_largemapcontrol3d'],
+				'SMALL' => $txt['googleMap_smallzoomcontrol3d'],
+				'DEFAULT' => $txt['googleMap_defaultzoomcontrol'])
+			),
+			array('check', 'googleMap_EnableLegend'),
+			array('check', 'googleMap_KMLoutput_enable', 'subtext' => $txt['googleMap_KMLoutput_enable_info']),
+			array('int', 'googleMap_PinNumber', 'subtext' => $txt['googleMap_PinNumber_info']),
+			array('select', 'googleMap_Sidebar', array(
+				'none' => $txt['googleMap_nosidebar'],
+				'right' => $txt['googleMap_rightsidebar'],
+				'left' => $txt['googleMap_leftsidebar'])
+			),
+			array('check', 'googleMap_googleBoldMember'),
+			// Member Pin Style
+			array('title', 'googleMap_MemeberpinSettings'),
+			array('check', 'googleMap_PinGender'),
+			array('text', 'googleMap_PinBackground', 6),
+			array('text', 'googleMap_PinForeground', 6),
+			array('select', 'googleMap_PinStyle', array(
+				'googleMap_plainpin' => $txt['googleMap_plainpin'],
+				'googleMap_textpin' => $txt['googleMap_textpin'],
+				'googleMap_iconpin' => $txt['googleMap_iconpin'])
+			),
+			array('check', 'googleMap_PinShadow'),
+			array('int', 'googleMap_PinSize', 2),
+			array('text', 'googleMap_PinText', 10, 'postinput' => $txt['googleMap_PinText_info']),
+			array('select', 'googleMap_PinIcon',
 				array(
 					'academy' => $txt['academy'],
 					'activities' => $txt['activities'],
@@ -311,7 +256,108 @@ function ModifyGoogleMapSettings()
 					'wc-male' => $txt['wc-male'],
 					'wc' => $txt['wc'],
 					'wheelchair' => $txt['wheelchair'],
-				)
+				), 'postinput' => $txt['googleMap_PinIcon_info']
+			),
+			// Clustering Options
+			array('title', 'googleMap_ClusterpinSettings'),
+			array('check', 'googleMap_EnableClusterer', 'subtext' => $txt['googleMap_EnableClusterer_info']),
+			array('int', 'googleMap_MinMarkerPerCluster'),
+			array('int', 'googleMap_MinMarkertoCluster'),
+			array('int', 'googleMap_GridSize'),
+			array('check', 'googleMap_ScalableCluster', 'subtext' => $txt['googleMap_ScalableCluster_info']),
+			// Clustering Style
+			array('title', 'googleMap_ClusterpinStyle'),
+			array('text', 'googleMap_ClusterBackground', 6),
+			array('text', 'googleMap_ClusterForeground', 6),
+			array('select', 'googleMap_ClusterStyle', array(
+				'googleMap_plainpin' => $txt['googleMap_plainpin'],
+				'googleMap_textpin' => $txt['googleMap_textpin'],
+				'googleMap_iconpin' => $txt['googleMap_iconpin'],
+				'googleMap_zonepin' => $txt['googleMap_zonepin'],
+				'googleMap_peepspin' => $txt['googleMap_peepspin'],
+				'googleMap_talkpin' => $txt['googleMap_talkpin'])
+			),
+			array('check', 'googleMap_ClusterShadow'),
+			array('int', 'googleMap_ClusterSize', '2'),
+			array('text', 'googleMap_ClusterText', 'postinput' => $txt['googleMap_PinText_info']),
+			array('select', 'googleMap_ClusterIcon',
+				array(
+					'academy' => $txt['academy'],
+					'activities' => $txt['activities'],
+					'airport' => $txt['airport'],
+					'amusement' => $txt['amusement'],
+					'aquarium' => $txt['aquarium'],
+					'art-gallery' => $txt['art-gallery'],
+					'atm' => $txt['atm'],
+					'baby' => $txt['baby'],
+					'bank-dollar' => $txt['bank-dollar'],
+					'bank-euro' => $txt['bank-euro'],
+					'bank-intl' => $txt['bank-intl'],
+					'bank-pound' => $txt['bank-pound'],
+					'bank-yen' => $txt['bank-yen'],
+					'bar' => $txt['bar'],
+					'barber' => $txt['barber'],
+					'beach' => $txt['beach'],
+					'beer' => $txt['beer'],
+					'bicycle' => $txt['bicycle'],
+					'books' => $txt['books'],
+					'bowling' => $txt['bowling'],
+					'bus' => $txt['bus'],
+					'cafe' => $txt['cafe'],
+					'camping' => $txt['camping'],
+					'car-dealer' => $txt['car-dealer'],
+					'car-rental' => $txt['car-rental'],
+					'car-repair' => $txt['car-repair'],
+					'casino' => $txt['casino'],
+					'caution' => $txt['caution'],
+					'cemetery-grave' => $txt['cemetery-grave'],
+					'cemetery-tomb' => $txt['cemetery-tomb'],
+					'cinema' => $txt['cinema'],
+					'civic-building' => $txt['civic-building'],
+					'computer' => $txt['computer'],
+					'corporate' => $txt['corporate'],
+					'fire' => $txt['fire'],
+					'flag' => $txt['flag'],
+					'floral' => $txt['floral'],
+					'helicopter' => $txt['helicopter'],
+					'home' => $txt['home1'],
+					'info' => $txt['info'],
+					'landslide' => $txt['landslide'],
+					'legal' => $txt['legal'],
+					'location' => $txt['location'],
+					'locomotive' => $txt['locomotive'],
+					'medical' => $txt['medical'],
+					'mobile' => $txt['mobile'],
+					'motorcycle' => $txt['motorcycle'],
+					'music' => $txt['music'],
+					'parking' => $txt['parking'],
+					'pet' => $txt['pet'],
+					'petrol' => $txt['petrol'],
+					'phone' => $txt['phone'],
+					'picnic' => $txt['picnic'],
+					'postal' => $txt['postal'],
+					'repair' => $txt['repair'],
+					'restaurant' => $txt['restaurant'],
+					'sail' => $txt['sail'],
+					'school' => $txt['school'],
+					'scissors' => $txt['scissors'],
+					'ship' => $txt['ship'],
+					'shoppingbag' => $txt['shoppingbag'],
+					'shoppingcart' => $txt['shoppingcart'],
+					'ski' => $txt['ski'],
+					'snack' => $txt['snack'],
+					'snow' => $txt['snow'],
+					'sport' => $txt['sport'],
+					'star' => $txt['star'],
+					'swim' => $txt['swim'],
+					'taxi' => $txt['taxi'],
+					'train' => $txt['train'],
+					'truck' => $txt['truck'],
+					'wc-female' => $txt['wc-female'],
+					'wc-male' => $txt['wc-male'],
+					'wc' => $txt['wc'],
+					'wheelchair' => $txt['wheelchair'],
+				), 'postinput' => $txt['googleMap_PinIcon_info']
 			),
 	);
 
@@ -324,8 +370,23 @@ function ModifyGoogleMapSettings()
 	}
 
 	$context['post_url'] = $scripturl . '?action=admin;area=modsettings;save;sa=googlemap';
-	$context['settings_title'] = $txt['googleMapFO'];
-
+	$context['settings_title'] = $txt['googleMap'];
+	$context['settings_insert_below'] = '
+	<script type="text/javascript" src="'.$settings['default_theme_url'].'/scripts/jscolor/jscolor.js"></script>
+	<script type="text/javascript">
+		var myPicker1 = new jscolor.color(document.getElementById(\'googleMap_PinBackground\'), {});
+		myPicker1.fromString(document.getElementById(\'googleMap_PinBackground\').value);
+		
+		var myPicker2 = new jscolor.color(document.getElementById(\'googleMap_PinForeground\'), {});
+		myPicker2.fromString(document.getElementById(\'googleMap_PinForeground\').value);
+		
+		var myPicker3 = new jscolor.color(document.getElementById(\'googleMap_ClusterBackground\'), {});
+		myPicker3.fromString(document.getElementById(\'googleMap_ClusterBackground\').value);
+		
+		var myPicker4 = new jscolor.color(document.getElementById(\'googleMap_ClusterForeground\'), {});
+		myPicker4.fromString(document.getElementById(\'googleMap_ClusterForeground\').value);
+	</script>';
+	
 	prepareDBSettingContext($config_vars);
 }
 ?>
