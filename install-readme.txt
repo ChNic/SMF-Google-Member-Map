@@ -1,5 +1,5 @@
 [hr]
-[center][size=16pt][b]Google Member Map V2.5[/b][/size]
+[center][size=16pt][b]Google Member Map V2.6[/b][/size]
 [url=http://custom.simplemachines.org/mods/index.php?action=search;author=11359][b]By Spuds[/b][/url]
 [url=http://custom.simplemachines.org/mods/index.php?mod=1010][b]Link to Mod[/b][/url]
 [/center]
@@ -32,6 +32,12 @@ In your admin panel you will need to enable it, which implies your acceptance of
 Please use the member map thread for support with this modification.
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
+[b]2.6 - 18 Dec 2011[/b]
+o + added a hidden map reset button to middle of pan control
+o + prevented output of gzip data when portamx is active
+o ! fixed member names not appearing in bold when they should have been
+o ! fixed undefined txt var due to order of load language
+
 [b]2.5 - 07 Dec 2011[/b]
 o + re-Released under proper BSD license
 o + all javascript redone to use GoogleMaps V3 api, API key is no longer needed

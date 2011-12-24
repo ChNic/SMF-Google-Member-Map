@@ -40,7 +40,10 @@ function template_map()
 		// our map
 		echo '
 									<td class="windowbg2" valign="middle" align="center">
-										<div id="map" style="width: 675px; height: 500px; color: #000000;"></div>';
+										<div id="mapWindow" style="position:relative;width: 675px; height: 500px; color: #000000;">
+											<div id="map" style="width: 675px; height: 500px;"></div>
+											<div id="googleMapReset" onclick="resetMap(); return false;" title="'. $txt['googleMap_Reset'] . '"></div>
+										</div>';
 									
 		// Set the text for the number of pins we are, or can, show
 		if ($context['total_pins'] >= $modSettings['googleMap_PinNumber'] && $modSettings['googleMap_PinNumber'] != 0)
@@ -76,7 +79,7 @@ function template_map()
 							</table>';
 
 		// Show a legend?
-		if (!empty($modSettings['googleMapsEnableLegend']))
+		if (!empty($modSettings['googleMap_EnableLegend']))
 		{
 			echo '
 							<div class="cat_bar">

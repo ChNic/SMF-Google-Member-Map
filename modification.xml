@@ -203,7 +203,7 @@ function template_profile_googlemap_modify()
 		function initialize() {
 			var latlng = new google.maps.LatLng(', (!empty($context['member']['googleMap']['latitude']) ? $context['member']['googleMap']['latitude'] : (!empty($modSettings['googleMap_DefaultLat']) ? $modSettings['googleMap_DefaultLat'] : 0)) . ', ' . (!empty($context['member']['googleMap']['longitude']) ? $context['member']['googleMap']['longitude'] : (!empty($modSettings['googleMap_DefaultLong']) ? $modSettings['googleMap_DefaultLong'] : 0)), ');
 			var options = {
-				zoom: ', !empty($context['member']['googleMap']['latitude']) ? 14 : (!empty($modSettings['googleMap_DefaultZoom']) ? $modSettings['googleMap_DefaultZoom'] : 4), ',
+				zoom: ', !empty($context['member']['googleMap']['latitude']) ? 15 : (!empty($modSettings['googleMap_DefaultZoom']) ? $modSettings['googleMap_DefaultZoom'] : 4), ',
 				center: latlng,
 				scrollwheel: false,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,

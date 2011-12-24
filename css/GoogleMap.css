@@ -33,3 +33,16 @@
 	margin: 0;
 	overflow: auto;
 }
+
+#googleMapReset 
+{
+    border: 1px dotted #EEE;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    display: block;
+    top: 36px;
+    left: 36px;
+    cursor: pointer;
+    background-color: #FFF;
+}

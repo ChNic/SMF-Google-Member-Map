@@ -7,7 +7,7 @@
  * @copyright (c) 2011 Spuds
  * @license license.txt (included with package) BSD
  *
- * @version 2.5
+ * @version 2.6
  *
  */
 
@@ -263,6 +263,12 @@ function initialize() {
 	
 	// load the members
 	makeRequest("' . $scripturl . '?action=googlemap;sa=.xml");
+	
+	// Our own initial state button since its gone walkies in the v3 api
+	var reset = document.getElementById("googleMapReset");
+	reset.style.filter = "alpha(opacity=0)";
+	reset.style.mozOpacity = "0";
+	reset.style.opacity = "0";
 }
 
 // Read the output of the marker xml
@@ -323,16 +329,13 @@ function makeMarkers(xmldoc) {
 
 // Create a marker and set up the event window
 function createMarker(point, pic, name, html, i) {
-	// hover over label name
-	name = name.replace(/\[b\](.*)\[\/b\]/gi, "$1");
-
 	// map marker
 	var marker = new google.maps.Marker({
 		position: point,
 		map: map,
 		icon: pic,
 		clickable: true,
-		title: name
+		title: name.replace(/\[b\](.*)\[\/b\]/gi, "$1")
 	});
 
 	// listen for a marker click
@@ -346,7 +349,7 @@ function createMarker(point, pic, name, html, i) {
 	// save the info used to populate the sidebar
 	gmarkers.push(marker);
 	htmls.push(html);
-	name = name.replace(/\[b\](.*)\[\/b\]/gi, "<b>$1</b>");
+	name = name.replace(/\[b\](.*)\[\/b\]/gi, "<strong>$1</strong>");
 
 	// add a line to the sidebar html';
 	if ($modSettings['googleMap_Sidebar'] !== 'none')
@@ -366,7 +369,16 @@ function finduser(i) {
 	infowindow = new google.maps.InfoWindow({content: htmls[i], maxWidth:240});
 	infowindow.open(map, gmarkers[i]);
 }
-	google.maps.event.addDomListener(window, "load", initialize);';
+
+function resetMap() {
+	// reset the map to inital values
+	infowindow.close();
+	map.setCenter(new google.maps.LatLng(' . (!empty($modSettings['googleMap_DefaultLat']) ? $modSettings['googleMap_DefaultLat'] : 0)  . ', ' . (!empty($modSettings['googleMap_DefaultLong']) ? $modSettings['googleMap_DefaultLong'] : 0) . '));
+    map.setZoom(' . $modSettings['googleMap_DefaultZoom'] . ');
+    map.setMapTypeId(google.maps.MapTypeId.' . $modSettings['googleMap_Type'] . ');
+}
+	
+google.maps.event.addDomListener(window, "load", initialize);';
 	
 	obExit(false);
 }
@@ -562,7 +574,7 @@ function gmm_build_XML()
 			else
 				$markers .= 'gender="0"';
 
-			if (!empty($modSettings['googleMap_googleBoldMember']) && $marker['googleMap']['pindate'] >= $last_week)
+			if (!empty($modSettings['googleMap_BoldMember']) && $marker['googleMap']['pindate'] >= $last_week)
 				$markers .= ' label="[b]' . $marker['name'] . '[/b]"><![CDATA[' . $datablurb . ']]></marker>';
 			else
 				$markers .= ' label="' . $marker['name'] . '"><![CDATA[' . $datablurb . ']]></marker>';

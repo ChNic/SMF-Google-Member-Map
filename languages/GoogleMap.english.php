@@ -1,5 +1,6 @@
 <?php
 $txt['googleMap'] = 'Member Map';
+$txt['googleMap_Reset'] = 'Reset Map';
 $txt['googleMap_GroupOfPins'] = "Group of Pins";
 $txt['googleMap_Where'] = 'Where';
 $txt['googleMap_Whereis'] = 'is';
@@ -57,7 +58,7 @@ $txt['googleMap_Sidebar'] = 'Where to show the map sidebar';
 $txt['googleMap_nosidebar'] = 'No Sidebar';
 $txt['googleMap_rightsidebar'] = 'Right Sidebar';
 $txt['googleMap_leftsidebar'] = 'Left Sidebar';
-$txt['googleMap_googleBoldMember'] = 'Show recently added / moved pins as <strong>bold</strong> in the sidebar';
+$txt['googleMap_BoldMember'] = 'Show recently added / moved pins as <strong>bold</strong> in the sidebar';
 
 $txt['googleMap_MemeberpinSettings'] = 'Member Pin Style';
 $txt['googleMap_PinStyle'] = 'What style of member pin to use';
@@ -138,7 +139,7 @@ $txt['home1'] = 'home';
 $txt['info'] = 'info';
 $txt['landslide'] = 'landslide';
 $txt['legal'] = 'legal';
-$txt['location'] = 'location';
+$txt['location1'] = 'location';
 $txt['locomotive'] = 'locomotive';
 $txt['medical'] = 'medical';
 $txt['mobile'] = 'mobile';

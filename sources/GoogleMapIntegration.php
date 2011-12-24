@@ -7,7 +7,7 @@
  * @copyright (c) 2011 Spuds
  * @license license.txt (included with package) BSD
  *
- * @version 2.5
+ * @version 2.6
  *
  */
 
@@ -165,7 +165,7 @@ function ModifyGoogleMapSettings()
 				'right' => $txt['googleMap_rightsidebar'],
 				'left' => $txt['googleMap_leftsidebar'])
 			),
-			array('check', 'googleMap_googleBoldMember'),
+			array('check', 'googleMap_BoldMember'),
 			// Member Pin Style
 			array('title', 'googleMap_MemeberpinSettings'),
 			array('check', 'googleMap_PinGender'),
@@ -223,7 +223,7 @@ function ModifyGoogleMapSettings()
 					'info' => $txt['info'],
 					'landslide' => $txt['landslide'],
 					'legal' => $txt['legal'],
-					'location' => $txt['location'],
+					'location' => $txt['location1'],
 					'locomotive' => $txt['locomotive'],
 					'medical' => $txt['medical'],
 					'mobile' => $txt['mobile'],
@@ -324,7 +324,7 @@ function ModifyGoogleMapSettings()
 					'info' => $txt['info'],
 					'landslide' => $txt['landslide'],
 					'legal' => $txt['legal'],
-					'location' => $txt['location'],
+					'location' => $txt['location1'],
 					'locomotive' => $txt['locomotive'],
 					'medical' => $txt['medical'],
 					'mobile' => $txt['mobile'],
