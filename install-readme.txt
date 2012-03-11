@@ -32,6 +32,9 @@ In your admin panel you will need to enable it, which implies your acceptance of
 Please use the member map thread for support with this modification.
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
+[b]2.7 - xx yyy 2012[/b]
+o + added CSS to style the places select dropdown
+
 [b]2.6 - 18 Dec 2011[/b]
 o + added a hidden map reset button to middle of pan control
 o + prevented output of gzip data when portamx is active
