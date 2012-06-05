@@ -135,7 +135,7 @@ var map = null;
 var mc = null;
 var infowindow = null;
 
-// icon locations
+// icon locations and cluster script
 var codebase = "http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer";
 var chartbase = "http://chart.apis.google.com/chart";
 
@@ -293,7 +293,7 @@ function makeMarkers(xmldoc) {
 		var marker = createMarker(point, npic, label, html, i);
 	}';
 
-	// clustering enabled and we have enought pins?
+	// clustering enabled and we have enough pins?
 	if (!empty($modSettings['googleMap_EnableClusterer']) && ($context['total_pins'] > (!empty($modSettings['googleMap_MinMarkertoCluster']) ? $modSettings['googleMap_MinMarkertoCluster'] : 0)))
 		echo '
 	// send the markers array to the cluster script
@@ -366,16 +366,21 @@ function createMarker(point, pic, name, html, i) {
 function finduser(i) {
 	if (infowindow)
 		infowindow.close();
+	
+	var marker = gmarkers[i];
 	infowindow = new google.maps.InfoWindow({content: htmls[i], maxWidth:240});
-	infowindow.open(map, gmarkers[i]);
+	infowindow.open(map, marker);
 }
 
+// Resets the map to the inital zoom/center values
 function resetMap() {
-	// reset the map to inital values
-	infowindow.close();
+	// close any info windows we may have opened
+	if (infowindow)
+		infowindow.close();
+	
 	map.setCenter(new google.maps.LatLng(' . (!empty($modSettings['googleMap_DefaultLat']) ? $modSettings['googleMap_DefaultLat'] : 0)  . ', ' . (!empty($modSettings['googleMap_DefaultLong']) ? $modSettings['googleMap_DefaultLong'] : 0) . '));
     map.setZoom(' . $modSettings['googleMap_DefaultZoom'] . ');
-    map.setMapTypeId(google.maps.MapTypeId.' . $modSettings['googleMap_Type'] . ');
+    // map.setMapTypeId(google.maps.MapTypeId.' . $modSettings['googleMap_Type'] . ');
 }
 	
 google.maps.event.addDomListener(window, "load", initialize);';
@@ -557,10 +562,17 @@ function gmm_build_XML()
 						</ul>
 					</li>';
 				}
-
-			$datablurb .= '
+				
+				$datablurb .= '
 				</ul>
-			</div>
+			</div>';
+			
+				// Show their personal text?
+				if (!empty($settings['show_blurb']) && $marker['blurb'] != '')
+					$datablurb .= '
+			<br class="clear" />' . $marker['blurb'];
+					
+				$datablurb .= '
 		</div>';
 			}
 			

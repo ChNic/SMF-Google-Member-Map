@@ -98,9 +98,28 @@ function template_map()
 									<td><img src="http://chart.apis.google.com/chart', $modSettings['fpin'], '" alt="" />', $txt['googleMap_FemalePin'], '</td>';
 			
 			if (!empty($modSettings['googleMap_EnableClusterer']) && ($context['total_pins'] > (!empty($modSettings['googleMap_MinMarkertoCluster']) ? $modSettings['googleMap_MinMarkertoCluster'] : 0)))
+			{
+				$codebase = 'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer';
+				$chartbase = "http://chart.apis.google.com/chart";
+
+				switch ($modSettings['cpin'])
+				{
+					case 1:
+						$pinsrc = $codebase . '/images/m1.png';
+						break;
+					case 2:
+						$pinsrc = $codebase . '/images/people35.png';
+						break;
+					case 3:
+						$pinsrc = $codebase . '/images/conv30.png';
+						break;
+					default:
+						$pinsrc = $chartbase . $modSettings['cpin'];
+				}				
+				
 				echo '
-									<td><img src="http://chart.apis.google.com/chart', $modSettings['cpin'], '" alt="" />', $txt['googleMap_GroupOfPins'], '</td>';
-			
+									<td><img src="' . $pinsrc . '" height=37 />', $txt['googleMap_GroupOfPins'], '</td>';
+			}
 			echo '
 								</tr>
 							</table>';
