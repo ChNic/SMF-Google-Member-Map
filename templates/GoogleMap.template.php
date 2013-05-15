@@ -4,7 +4,7 @@
 function template_map()
 {
 	global $context, $modSettings, $scripturl, $txt, $settings;
-	
+
 	if (!empty($modSettings['googleMap_Enable']))
 	{
 		echo '
@@ -13,7 +13,7 @@ function template_map()
 							<span class="align_left">', $txt['googleMap'], '</span>
 						</h4>
 					</div>
-					
+
 					<div class="windowbg2">
 						<span class="topslice"><span></span></span>
 						<div class="content">
@@ -28,15 +28,17 @@ function template_map()
 										<div class="centertext"><em><strong>', $txt['googleMap_Pinned'], '</strong></em></div>
 										<hr style="width: 94%;" />
 										<div id="googleSidebar" class="googleMap_Sidebar" ></div>';
+
 			if (!empty($modSettings['googleMap_BoldMember']))
 				echo '
 										<div class="centertext googleMap_Legend">
 											<strong>' . $txt['googleMap_bold'] . '</strong>&nbsp;' . $txt['googleMap_OnMove'] . '
-										</div>';
+										</divc>';
+
 			echo '
 									</td>';
-		}					
-		
+		}
+
 		// our map
 		echo '
 									<td class="windowbg2" valign="middle" align="center">
@@ -44,15 +46,15 @@ function template_map()
 											<div id="map" style="width: 675px; height: 500px;"></div>
 											<div id="googleMapReset" onclick="resetMap(); return false;" title="'. $txt['googleMap_Reset'] . '"></div>
 										</div>';
-									
+
 		// Set the text for the number of pins we are, or can, show
 		if ($context['total_pins'] >= $modSettings['googleMap_PinNumber'] && $modSettings['googleMap_PinNumber'] != 0)
-			echo 
+			echo
 										sprintf($txt['googleMap_Thereare'], '<strong>(' . $modSettings['googleMap_PinNumber'] . '+)</strong>');
 		else
-			echo 
-		
+			echo
 										sprintf($txt['googleMap_Thereare'], '<strong>(' . $context['total_pins'] . ')</strong>');
+
 		echo '
 									</td>';
 
@@ -64,11 +66,13 @@ function template_map()
 										<div class="centertext"><em><strong>', $txt['googleMap_Pinned'], '</strong></em></div>
 										<hr style="width: 94%;" />
 										<div id="googleSidebar" class="googleMap_Sidebar"></div>';
+
 			if (!empty($modSettings['googleMap_BoldMember']))
 				echo '
 										<div class="centertext googleMap_Legend">
 											<strong>' . $txt['googleMap_bold'] . '</strong>&nbsp;' . $txt['googleMap_OnMove'] . '
 										</div>';
+
 			echo '
 									</td>';
 		}
@@ -96,7 +100,7 @@ function template_map()
 									<td><img src="http://chart.apis.google.com/chart', $modSettings['npin'], '" alt="" />', $txt['googleMap_AndrogynyPin'], '</td>
 									<td><img src="http://chart.apis.google.com/chart', $modSettings['mpin'], '" alt="" />', $txt['googleMap_MalePin'], '</td>
 									<td><img src="http://chart.apis.google.com/chart', $modSettings['fpin'], '" alt="" />', $txt['googleMap_FemalePin'], '</td>';
-			
+
 			if (!empty($modSettings['googleMap_EnableClusterer']) && ($context['total_pins'] > (!empty($modSettings['googleMap_MinMarkertoCluster']) ? $modSettings['googleMap_MinMarkertoCluster'] : 0)))
 			{
 				$codebase = 'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer';
@@ -115,19 +119,20 @@ function template_map()
 						break;
 					default:
 						$pinsrc = $chartbase . $modSettings['cpin'];
-				}				
-				
+				}
+
 				echo '
 									<td><img src="' . $pinsrc . '" height=37 />', $txt['googleMap_GroupOfPins'], '</td>';
 			}
+
 			echo '
 								</tr>
 							</table>';
 		}
-		
+
 		echo '
 							<table class="centertext">';
-								
+
 		// If they can place a pin, give them a hint
 		if (allowedTo('googleMap_place'))
 			echo '
@@ -136,7 +141,7 @@ function template_map()
 										<a href="', $scripturl, '?action=profile;area=forumprofile">', $txt['googleMap_AddPinNote'], '</a>
 									</td>
 								</tr>';
-								
+
 		// Google earth klm output enabled?
 		if (!empty($modSettings['googleMap_KMLoutput_enable']))
 			echo '
@@ -155,11 +160,11 @@ function template_map()
 						</div>
 						<span class="botslice"><span></span></span>
 					</div>';
-				
+
 		// Load the scripts so we can render the map
 		echo '
 					<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-					<script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/markerclusterer_packed.js"></script>
+					<script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/markerclusterer_compiled.js"></script>
 					<script type="text/javascript" src="', $scripturl, '?action=googlemap;sa=.js;count='. $context['total_pins'] .'"></script>';
 	}
 }

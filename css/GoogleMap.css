@@ -5,6 +5,16 @@
 	border: 0;
 }
 
+#mapWindow {
+	padding: 6px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #ccc #ccc #999 #ccc;
+	-webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+	-moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+	box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+}
+
 .googleMap ul ul
 {
 	padding: 3px 0 0 0;
@@ -16,7 +26,7 @@
 	display: inline;
 }
 
-.googleMap_Sidebar 
+.googleMap_Sidebar
 {
 	font-size: small;
 	margin: 0;
@@ -26,7 +36,7 @@
 	height: 460px;
 }
 
-.googleMap_Legend 
+.googleMap_Legend
 {
 	font-size: x-small;
 	font-family: tahoma, sans-serif;
@@ -34,7 +44,7 @@
 	overflow: auto;
 }
 
-#googleMapReset 
+#googleMapReset
 {
     border: 1px dotted #EEE;
     width: 16px;
