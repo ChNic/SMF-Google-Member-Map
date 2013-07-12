@@ -6,7 +6,7 @@
 [hr]
 
 [color=blue][b][size=12pt][u]License[/u][/size][/b][/color]
-This modification is released under a BSD license, a copy of it with its provisions is included with the package.
+This modification is released under a MPL V1.1 license, a copy of it with its provisions is included with the package.
 
 [color=blue][b][size=12pt][u]Dependencies[/u][/size][/b][/color]
 The Google JavaScript Maps API V3 to create the map and place pins.  This API is available for any web site that is free to consumers. By enabling and using this SMF modification you will be acknowledging and agreeing to the Google<a href="http://code.google.com/apis/maps/terms.html"> terms of use</a>';
@@ -42,7 +42,7 @@ o ! fixed member names not appearing in bold when they should have been
 o ! fixed undefined txt var due to order of load language
 
 [b]2.5 - 07 Dec 2011[/b]
-o + re-Released under proper BSD license
+o + re-Released under proper open license
 o + all javascript redone to use GoogleMaps V3 api, API key is no longer needed
 o + new pin clustering code, can show cluster images as well as pins, has dynamic cluster pin sizing
 o + local search now uses places library, pan/zooms to location but does not show pin (limits user confusion)
