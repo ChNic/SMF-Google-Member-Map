@@ -42,4 +42,3 @@ foreach ($hook_functions as $hook => $function)
 
 if (SMF == 'SSI')
 	echo 'Congratulations! You have successfully installed the mod hooks';
-?>

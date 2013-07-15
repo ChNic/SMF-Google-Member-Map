@@ -86,4 +86,3 @@ if (!empty($_POST['do_db_changes']))
 	if (SMF == 'SSI')
 	   echo 'Congratulations! You have successfully removed this mod!';
 }
-?>

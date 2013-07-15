@@ -13,6 +13,9 @@
  *
  */
 
+if (!defined('SMF'))
+	die('Hacking attempt...');
+
 /**
  * imb_googlemap()
  *
