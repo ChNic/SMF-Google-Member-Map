@@ -82,6 +82,8 @@ function gmm_build_JS()
 	else
 		ob_start();
 
+	header('Content-Type: application/javascript');
+
 	// Start up the session URL fixer.
 	ob_start('ob_sessrewrite');
 
