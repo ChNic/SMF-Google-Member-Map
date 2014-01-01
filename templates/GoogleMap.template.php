@@ -33,7 +33,7 @@ function template_map()
 				echo '
 										<div class="centertext googleMap_Legend">
 											<strong>' . $txt['googleMap_bold'] . '</strong>&nbsp;' . $txt['googleMap_OnMove'] . '
-										</divc>';
+										</div>';
 
 			echo '
 									</td>';
