@@ -22,7 +22,7 @@ if (!defined('SMF'))
  * Menu Button hook, integrate_menu_buttons, called from subs.php
  * used to add top menu buttons
  *
- * @param array $buttons
+ * @param mixed[] $buttons
  */
 function imb_googlemap(&$buttons)
 {
@@ -61,11 +61,11 @@ function imb_googlemap(&$buttons)
  * Permissions hook, integrate_load_permissions, called from ManagePermissions.php
  * used to add new permisssions
  *
- * @param array $permissionGroups
- * @param array $permissionList
- * @param array $leftPermissionGroups
- * @param array $hiddenPermissions
- * @param array $relabelPermissions
+ * @param mixed[] $permissionGroups
+ * @param mixed[] $permissionList
+ * @param mixed[] $leftPermissionGroups
+ * @param mixed[] $hiddenPermissions
+ * @param mixed[] $relabelPermissions
  */
 function ilp_googlemap(&$permissionGroups, &$permissionList, &$leftPermissionGroups, &$hiddenPermissions, &$relabelPermissions)
 {
@@ -79,7 +79,7 @@ function ilp_googlemap(&$permissionGroups, &$permissionList, &$leftPermissionGro
  * Actions hook, integrate_actions, called from index.php
  * used to add new actions to the system
  *
- * @param array $actionArray
+ * @param mixed[] $actionArray
  */
 function ia_googlemap(&$actionArray)
 {
@@ -95,7 +95,7 @@ function ia_googlemap(&$actionArray)
  * Admin Hook, integrate_admin_areas, called from Admin.php
  * used to add/modify admin menu areas
  *
- * @param array $admin_areas
+ * @param mixed[] $admin_areas
  */
 function iaa_googlemap(&$admin_areas)
 {
@@ -111,7 +111,7 @@ function iaa_googlemap(&$admin_areas)
  * Modifications hook, integrate_modify_modifications, called from ManageSettings.php
  * used to add new menu screens areas.
  *
- * @param array $sub_actions
+ * @param mixed[] $sub_actions
  */
 function imm_googlemap(&$sub_actions)
 {
@@ -120,7 +120,6 @@ function imm_googlemap(&$sub_actions)
 
 /**
  * ModifyGoogleMapSettings()
- *
  */
 function ModifyGoogleMapSettings()
 {
