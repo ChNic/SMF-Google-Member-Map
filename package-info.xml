@@ -10,7 +10,7 @@
 		<readme type="file" parsebbc="true">install-readme.txt</readme>
 		<require-file name="sources/GoogleMapIntegration.php" destination="$sourcedir">Our integration Functions</require-file>
 		<require-file name="sources/GoogleMap.php" destination="$sourcedir">The primary modification functions </require-file>
-		<require-file name="scripts/markerclusterer_packed.js" destination="$themedir/scripts">Jasvascript to enable the cluster functions</require-file>
+		<require-file name="scripts/markerclusterer_compiled.js" destination="$themedir/scripts">Jasvascript to enable the cluster functions</require-file>
 		<require-dir name="scripts/jscolor" destination="$boarddir/Themes/default/scripts">Jasvascript to enable color selection</require-dir>
 		<require-file name="css/GoogleMap.css" destination="$themedir/css">Style Sheets</require-file>
 		<require-file name="templates/GoogleMap.template.php" destination="$themedir">The template for viewing the member map</require-file>
