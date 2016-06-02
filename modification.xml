@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
 <!-- --------------------------------------------------------------------------
-  package "Google Member Map" Mod for Simple Machines Forum (SMF) V2.0
+  package "Google Member Map" Mod for Simple Machines Forum (SMF) V2.1
   author Spuds
   copyright (c) 2011 Spuds
   license license.txt (included with package) MPL 1.1
@@ -11,11 +11,10 @@
 
 	<file name="$sourcedir/Load.php">
 		<operation>
-			<search position="before"><![CDATA[
-		'website' => array(
-			'title' => $profile['website_title'],
-			'url' => $profile['website_url'],
-		),]]></search>
+			<search position="before"><![CDATA[			'website' => array(
+				'title' => $profile['website_title'],
+				'url' => $profile['website_url'],
+			),]]></search>
 			<add><![CDATA[
 		'googleMap' => array(
 			'latitude' => !isset($profile['latitude']) ? 0 : (float) $profile['latitude'],
@@ -26,16 +25,16 @@
 
 		<operation>
 			<search position="replace"><![CDATA[
-			mem.buddy_list, mg.online_color AS member_group_color, IFNULL(mg.group_name, {string:blank_string}) AS member_group,]]></search>
+			$select_columns .= ', mem.buddy_list,  mem.additional_groups';]]></search>
 			<add><![CDATA[
-			mem.buddy_list, mem.latitude, mem.longitude, mem.pindate, mg.online_color AS member_group_color, IFNULL(mg.group_name, {string:blank_string}) AS member_group,]]></add>
+			$select_columns .= ', mem.buddy_list, mem.latitude, mem.longitude, mem.pindate, mem.additional_groups';]]></add>
 		</operation>
 
 		<operation>
 			<search position="replace"><![CDATA[
-			mem.notify_types, lo.url, mg.online_color AS member_group_color, IFNULL(mg.group_name, {string:blank_string}) AS member_group,]]></search>
+			mem.total_time_logged_in,]]></search>
 			<add><![CDATA[
-			mem.notify_types, mem.latitude, mem.longitude, mem.pindate, lo.url, mg.online_color AS member_group_color, IFNULL(mg.group_name, {string:blank_string}) AS member_group,]]></add>
+			mem.total_time_logged_in, mem.latitude, mem.longitude, mem.pindate, ]]></add>
 		</operation>
 	</file>
 
@@ -57,11 +56,9 @@
 
 		<operation>
 			<search position="replace"><![CDATA[
-			'karma_good', 'hr',
 			'website_title', 'website_url',
 ]]></search>
 			<add><![CDATA[
-			'karma_good', 'hr',
 			'latitude', 'hr',
 			'website_title', 'website_url',
 ]]></add>
@@ -69,10 +66,10 @@
 
 		<operation>
 			<search position="after"><![CDATA[
-		'karma_good' => array(
+		'id_theme' => array(
 			'type' => 'callback',
-			'callback_func' => 'karma_modify',
-			'permission' => 'admin_forum',
+			'callback_func' => 'theme_pick',
+			'permission' => 'profile_extra',
 ]]></search>
 			<add><![CDATA[
 		'latitude' => array(
@@ -111,10 +108,12 @@
 
 	<file name="$themedir/Profile.template.php" error="skip">
 		<operation>
-			<search position="replace"><![CDATA[					<dd>', $context['member']['last_login'], '</dd>
+			<search position="replace"><![CDATA[					<dd>', $context['member']['last_login'], (!empty($context['member']['is_hidden']) ? ' (' . $txt['hidden'] . ')' : ''), '</dd>';
+
+	echo '
 				</dl>';
 ]]></search>
-			<add><![CDATA[				<dd>', $context['member']['last_login'], '</dd>';
+			<add><![CDATA[					<dd>', $context['member']['last_login'], (!empty($context['member']['is_hidden']) ? ' (' . $txt['hidden'] . ')' : ''), '</dd>';
 
 	if (!empty($modSettings['googleMap_Enable']) && allowedTo('googleMap_view'))
 	{
@@ -161,10 +160,10 @@
 		</operation>
 		
 		<operation>
-			<search position="before"><![CDATA[
-								(', $txt['total'], ': <span id="karmaTotal">', ($context['member']['karma']['good'] - $context['member']['karma']['bad']), '</span>)
-							</dd>';
+			<search position="before"><![CDATA[	echo '
+									<div class="smalltext">', sprintf($txt['avatar_max_size_' . $suffix], $w, $h), '</div>';
 }
+
 ]]></search>
 			<add><![CDATA[
 
